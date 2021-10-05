@@ -1,0 +1,32 @@
+<template>
+  <component :is="name" v-bind="$props" />
+</template>
+
+<script>
+import Loading from "./Icon/Loading.vue";
+import Copy from "./Icon/Copy.vue";
+import ChevronDown from "./Icon/ChevronDown.vue";
+import Chat from "./Icon/Chat.vue";
+import Close from "./Icon/Close.vue";
+import Back from "./Icon/Back.vue";
+
+export default {
+  name: "Icon",
+
+  components: {
+    Loading,
+    Copy,
+    ChevronDown,
+    Chat,
+    Close,
+    Back,
+  },
+
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
+};
+</script>
