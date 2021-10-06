@@ -12,6 +12,7 @@
         class="text-xl text-gray-800 focus:outline-none"
         :class="{ invisible: canGoBack }"
         :disabled="canGoBack"
+        @click="back"
       >
         <icon name="back" :color="colors.gray['800']" />
       </button>
@@ -31,7 +32,7 @@
       </button>
     </div>
 
-    <div>wizard</div>
+    <wizard />
 
     <div v-if="canShowExtraInfo" class="text-gray-800 text-sm flex justify-end">
       <icon name="chat" class="mr-1" :color="brandColors.graydark" />
@@ -46,15 +47,20 @@ import { computed, defineComponent, SetupContext } from "@vue/runtime-core";
 import { ComputedRef } from "@vue/reactivity";
 
 import useStore from "../../hooks/store";
+import useNavigation, { Navigation } from "../../hooks/navigation";
 
 import { brandColors } from "../../services/colors";
-import colors from "tailwindcss/colors.js";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import colors from "tailwindcss/colors";
 
 import Icon from "../Icon.vue";
+import Wizard from "./Wizard.vue";
 
 interface SetupReturn {
   emit: SetupContext["emit"];
   label: ComputedRef<string>;
+  back: Navigation["back"];
   canGoBack: ComputedRef<boolean>;
   canShowExtraInfo: ComputedRef<boolean>;
   brandColors: Record<string, string>;
@@ -66,12 +72,14 @@ export default defineComponent({
 
   components: {
     Icon,
+    Wizard,
   },
 
   emits: ["close-box"],
 
   setup(_, { emit }: SetupContext): SetupReturn {
     const store = useStore();
+    const { back } = useNavigation();
 
     const label = computed<string>(() => {
       if (store.feedbackType === "ISSUE") {
@@ -103,6 +111,7 @@ export default defineComponent({
     return {
       emit,
       label,
+      back,
       canGoBack,
       canShowExtraInfo,
       brandColors,
