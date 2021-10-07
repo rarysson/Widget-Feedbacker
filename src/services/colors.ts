@@ -5,4 +5,5 @@ export const brandColors = {
   graydark: "#C0BCB0",
   warning: "#E4B52E",
   danger: "#F88676",
+  success: "#63C3BE",
 };

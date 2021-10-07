@@ -15,6 +15,8 @@ import { StoreState, setFeedbackType } from "../../store";
 
 import SelectFeedbackType from "./WizardStates/SelectFeedbackType.vue";
 import WriteFeedback from "./WizardStates/WriteFeedback.vue";
+import Success from "./WizardStates/Success.vue";
+import Error from "./WizardStates/Error.vue";
 
 interface SetupReturn {
   store: StoreState;
@@ -28,6 +30,8 @@ export default defineComponent({
   components: {
     SelectFeedbackType,
     WriteFeedback,
+    Success,
+    Error,
   },
 
   setup(): SetupReturn {

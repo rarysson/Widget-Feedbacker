@@ -9,6 +9,8 @@ import ChevronDown from "./Icon/ChevronDown.vue";
 import Chat from "./Icon/Chat.vue";
 import Close from "./Icon/Close.vue";
 import Back from "./Icon/Back.vue";
+import Success from "./Icon/Success.vue";
+import Error from "./Icon/Error.vue";
 
 export default {
   name: "Icon",
@@ -20,6 +22,8 @@ export default {
     Chat,
     Close,
     Back,
+    Success,
+    Error,
   },
 
   props: {

@@ -24,6 +24,10 @@ export function setCurrentComponent(component: string): void {
   state.currentComponent = component;
 }
 
+export function setMessage(message: string): void {
+  state.message = message;
+}
+
 export function setFeedbackType(feedbackType: string): void {
   state.feedbackType = feedbackType;
 }
