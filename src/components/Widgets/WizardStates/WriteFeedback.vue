@@ -51,13 +51,11 @@ import {
   ComputedRef,
   defineComponent,
   reactive,
-  SetupContext,
 } from "@vue/runtime-core";
 
 import useStore from "@/hooks/store";
 import useNavigation from "@/hooks/navigation";
-// import services from "@/services/request";
-const services = { feedbacks: { create(x: any): any {} } };
+import services from "@/services/request";
 import { setMessage } from "@/store";
 
 import Icon from "../../Icon.vue";
@@ -82,7 +80,7 @@ export default defineComponent({
     Icon,
   },
 
-  setup(_, { emit }: SetupContext): SetupReturn {
+  setup(): SetupReturn {
     const store = useStore();
     const { setErrorState, setSuccessState } = useNavigation();
     const state = reactive<State>({
@@ -105,7 +103,7 @@ export default defineComponent({
       try {
         state.isLoading = true;
         setMessage(state.feedback);
-        const response = services.feedbacks.create({
+        const response = await services.feedbacks.create({
           type: store.feedbackType,
           text: store.message,
           page: store.currentPage,
